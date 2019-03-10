@@ -1,5 +1,5 @@
 
-## 宿主机配置路径  /srv/gitlab/config# vi gitlab.rb
+### 宿主机配置路径  /srv/gitlab/config# vi gitlab.rb
 
 ```
 #prometheus_monitoring['enable'] = true
