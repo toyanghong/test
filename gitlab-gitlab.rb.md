@@ -2,9 +2,10 @@
 ## 宿主机配置路径  /srv/gitlab/config# vi gitlab.rb
 
 ```
-
-prometheus_monitoring['enable'] = false
+#prometheus_monitoring['enable'] = true
+#letsencrypt['enable'] = true
 external_url "http://gitlab.hyx123.cn"
+#letsencrypt['contact_emails'] = ['344454075@qq.com']
 
 gitlab_rails['smtp_enable'] = true
 gitlab_rails['smtp_address'] = "smtp.qq.com"
