@@ -1,0 +1,117 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  annotations:
+    deployment.kubernetes.io/revision: "12"
+    kubectl.kubernetes.io/last-applied-configuration: '{"apiVersion":"apps/v1beta2","kind":"Deployment","metadata":{"annotations":{"deployment.kubernetes.io/revision":"1"},"creationTimestamp":"2019-03-10T05:25:21Z","generation":1,"labels":{"app":"gitlab-runner"},"name":"gitlab-runner","namespace":"gitlab","resourceVersion":"745494","selfLink":"/apis/apps/v1beta2/namespaces/gitlab/deployments/gitlab-runner","uid":"e66a4f9c-42f4-11e9-a634-00163e02623f"},"spec":{"progressDeadlineSeconds":600,"replicas":3,"revisionHistoryLimit":2,"selector":{"matchLabels":{"app":"gitlab-runner"}},"strategy":{"rollingUpdate":{"maxSurge":"25%","maxUnavailable":"25%"},"type":"RollingUpdate"},"template":{"metadata":{"creationTimestamp":null,"labels":{"app":"gitlab-runner"}},"spec":{"containers":[{"args":["run"],"image":"gitlab/gitlab-runner:latest","imagePullPolicy":"Always","name":"runner","resources":{},"terminationMessagePath":"/dev/termination-log","terminationMessagePolicy":"File","volumeMounts":[{"mountPath":"/etc/gitlab-runner","name":"config"},{"mountPath":"/etc/ssl/certs","name":"cacerts","readOnly":true}]}],"dnsPolicy":"ClusterFirst","initContainers":[{"args":["register"],"env":[{"name":"CI_SERVER_URL","value":"http://gitlab.hyx123.cn/"},{"name":"REGISTER_NON_INTERACTIVE","value":"true"},{"name":"REGISTRATION_TOKEN","value":"iEdc9psUJzkC43ka6X1D"},{"name":"RUNNER_EXECUTOR","value":"kubernetes"},{"name":"RUNNER_REQUEST_CONCURRENCY","value":"4"},{"name":"KUBERNETES_PRIVILEGED","value":"true"}],"image":"gitlab/gitlab-runner:latest","imagePullPolicy":"Always","name":"init-runner","resources":{},"terminationMessagePath":"/dev/termination-log","terminationMessagePolicy":"File","volumeMounts":[{"mountPath":"/etc/gitlab-runner","name":"config"},{"mountPath":"/etc/ssl/certs","name":"cacerts","readOnly":true}]},{"args":["cat
+      \u003c\u003cEOF \u003e\u003e /etc/gitlab-runner/config.toml\n  [[runners.kubernetes.volumes.host_path]]\n  name
+      = \"docker-sock\"\n  mount_path = \"/var/run/docker.sock\"\n  host_path = \"/var/run/docker.sock\"\nEOF\n"],"command":["sh","-c"],"image":"alpine","imagePullPolicy":"Always","name":"init-runner-volume","resources":{},"terminationMessagePath":"/dev/termination-log","terminationMessagePolicy":"File","volumeMounts":[{"mountPath":"/etc/gitlab-runner","name":"config"}]}],"restartPolicy":"Always","schedulerName":"default-scheduler","securityContext":{},"terminationGracePeriodSeconds":30,"volumes":[{"hostPath":{"path":"/usr/share/ca-certificates/mozilla","type":""},"name":"cacerts"},{"emptyDir":{},"name":"config"}]}}}}'
+  creationTimestamp: "2019-03-10T09:37:51Z"
+  generation: 13
+  labels:
+    app: gitlab-runner
+  name: gitlab-runner
+  namespace: gitlab
+  resourceVersion: "812831"
+  selfLink: /apis/apps/v1beta2/namespaces/gitlab/deployments/gitlab-runner
+  uid: 2c9714ab-4318-11e9-a634-00163e02623f
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 2
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      app: gitlab-runner
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        cattle.io/timestamp: "2019-03-10T15:37:59Z"
+      creationTimestamp: null
+      labels:
+        app: gitlab-runner
+    spec:
+      containers:
+      - args:
+        - run
+        image: gitlab/gitlab-runner:latest
+        imagePullPolicy: Always
+        name: runner
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /etc/gitlab-runner
+          name: config
+        - mountPath: /etc/ssl/certs
+          name: cacerts
+          readOnly: true
+      dnsPolicy: ClusterFirst
+      initContainers:
+      - args:
+        - register
+        env:
+        - name: CI_SERVER_URL
+          value: http://gitlab.hyx123.cn/
+        - name: KUBERNETES_PRIVILEGED
+          value: "true"
+        - name: REGISTER_LOCKED
+          value: "false"
+        - name: REGISTER_NON_INTERACTIVE
+          value: "true"
+        - name: REGISTRATION_TOKEN
+          value: 2axpJz7EMxtnkELc6sgS
+        - name: RUNNER_EXECUTOR
+          value: kubernetes
+        - name: RUNNER_REQUEST_CONCURRENCY
+          value: "4"
+        image: gitlab/gitlab-runner:latest
+        imagePullPolicy: Always
+        name: init-runner
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /etc/ssl/certs
+          name: cacerts
+          readOnly: true
+        - mountPath: /etc/gitlab-runner
+          name: config
+      - args:
+        - |-
+          cat <<EOF >> /etc/gitlab-runner/config.toml
+            [[runners.kubernetes.volumes.host_path]]
+            name = "docker-sock"
+            mount_path = "/var/run/docker.sock"
+            host_path = "/var/run/docker.sock"
+          EOF
+        command:
+        - sh
+        - -c
+        image: alpine
+        imagePullPolicy: Always
+        name: init-runner-volume
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /etc/gitlab-runner
+          name: config
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      serviceAccount: gitlab-ci
+      serviceAccountName: gitlab-ci
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - hostPath:
+          path: /usr/share/ca-certificates/mozilla
+          type: ""
+        name: cacerts
+      - emptyDir: {}
+        name: config
+
