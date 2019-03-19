@@ -1,26 +1,31 @@
 ### mysql 安装说明
-` 通过rancher部署安装`
-
-` "DefaultConnection3": "server=ip;user=root;database=dbname;port=30306;password=password" `
-
+- ` 通过rancher部署安装`
+- ` "DefaultConnection3": "server=ip;user=root;database=dbname;port=30306;password=password" `
 - mysql:5.6
+- ` 注意配置文件映射 `
+- 在映射的主机配置文件下（配置不区分数据库表名称大小写） vi my.cnf
+```
+[mysqld]
+lower_case_table_names=1
+```
+
 ``` yaml
 
 apiVersion: apps/v1beta2
 kind: Deployment
 metadata:
   annotations:
-    deployment.kubernetes.io/revision: "1"
+    deployment.kubernetes.io/revision: "5"
     field.cattle.io/creatorId: user-844ll
     field.cattle.io/publicEndpoints: '[{"port":30306,"protocol":"TCP","serviceName":"app:mysql","allNodes":true}]'
   creationTimestamp: "2019-03-19T11:59:44Z"
-  generation: 3
+  generation: 7
   labels:
     cattle.io/creator: norman
     workload.user.cattle.io/workloadselector: deployment-app-mysql
   name: mysql
   namespace: app
-  resourceVersion: "2005656"
+  resourceVersion: "2015149"
   selfLink: /apis/apps/v1beta2/namespaces/app/deployments/mysql
   uid: 7c0db86c-4a3e-11e9-92d9-00163e02623f
 spec:
@@ -38,7 +43,7 @@ spec:
   template:
     metadata:
       annotations:
-        cattle.io/timestamp: "2019-03-19T11:59:43Z"
+        cattle.io/timestamp: "2019-03-19T13:36:01Z"
         field.cattle.io/ports: '[[{"containerPort":3306,"dnsName":"mysql","kind":"ClusterIP","name":"3306tcp02","protocol":"TCP","sourcePort":0}]]'
       creationTimestamp: null
       labels:
@@ -47,7 +52,7 @@ spec:
       containers:
       - env:
         - name: MYSQL_ROOT_PASSWORD
-          value: password
+          value: password-13578
         image: mysql:5.6
         imagePullPolicy: Always
         name: mysql
@@ -70,6 +75,8 @@ spec:
         volumeMounts:
         - mountPath: /var/lib/mysql
           name: vol1
+        - mountPath: /etc/mysql/conf.d
+          name: vol2
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       schedulerName: default-scheduler
@@ -80,22 +87,26 @@ spec:
           path: /srv/mysql
           type: DirectoryOrCreate
         name: vol1
+      - hostPath:
+          path: /srv/mysql
+          type: DirectoryOrCreate
+        name: vol2
 status:
   availableReplicas: 1
   conditions:
-  - lastTransitionTime: "2019-03-19T12:00:08Z"
-    lastUpdateTime: "2019-03-19T12:00:08Z"
+  - lastTransitionTime: "2019-03-19T11:59:44Z"
+    lastUpdateTime: "2019-03-19T13:36:12Z"
+    message: ReplicaSet "mysql-6d46d5fdcb" has successfully progressed.
+    reason: NewReplicaSetAvailable
+    status: "True"
+    type: Progressing
+  - lastTransitionTime: "2019-03-19T13:43:05Z"
+    lastUpdateTime: "2019-03-19T13:43:05Z"
     message: Deployment has minimum availability.
     reason: MinimumReplicasAvailable
     status: "True"
     type: Available
-  - lastTransitionTime: "2019-03-19T11:59:44Z"
-    lastUpdateTime: "2019-03-19T12:00:08Z"
-    message: ReplicaSet "mysql-5f89478884" has successfully progressed.
-    reason: NewReplicaSetAvailable
-    status: "True"
-    type: Progressing
-  observedGeneration: 3
+  observedGeneration: 7
   readyReplicas: 1
   replicas: 1
   updatedReplicas: 1
