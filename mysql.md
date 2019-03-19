@@ -2,10 +2,21 @@
 - ` 通过rancher部署安装（不是直接复制yaml）`
 - ` "DefaultConnection3": "server=ip;user=root;database=dbname;port=30306;password=password" `
 - ` 注意配置文件映射 `
-- 在映射的主机配置文件下（配置不区分数据库表名称大小写） vi my.cnf
+- 在映射的主机配置文件下（配置不区分数据库表名称大小写，中文乱码） vi my.cnf
 ```
+
 [mysqld]
-lower_case_table_names=1
+#区分数据表大小写
+lower_case_table_names=1 
+#中文乱码
+default-storage-engine=INNODB
+character-set-server=utf8
+collation-server=utf8_general_ci
+
+[client]
+#中文乱码
+default-character-set=utf8
+
 ```
 - yaml deployment
 
