@@ -149,7 +149,7 @@ status:
   loadBalancer: {}
 
 ```
-### phpmyadmin安装说明
+### phpmyadmin安装说明(安装完成后在phomyadmin里面修改密码)
 
 ```yaml
 apiVersion: apps/v1beta2
