@@ -1,5 +1,5 @@
 ### mysql 安装说明 （mysql:5.6）
-- ` 通过rancher部署安装`
+- ` 通过rancher部署安装（不是直接复制yaml）`
 - ` "DefaultConnection3": "server=ip;user=root;database=dbname;port=30306;password=password" `
 - ` 注意配置文件映射 `
 - 在映射的主机配置文件下（配置不区分数据库表名称大小写） vi my.cnf
