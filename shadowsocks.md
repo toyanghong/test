@@ -16,13 +16,13 @@
 ```
 - 日志查看 ` docker logs id`
 
-### mritd/shadowsocks版本(3.2.4-20190321)
+### mritd/shadowsocks版本(3.2.4-20190321) 当前使用
 `注意tag是 3.2.4-20190321 `
 
-- 执行以下命令 无需额外配置
+- 执行以下命令 无需额外配置即可连接ss 如需kcp需要客户端配置
 
 ` docker run -dt --name ssserver -p 6443:6443 -p 6500:6500/udp mritd/shadowsocks:3.2.4-20190321  -m "ss-server" -s "-s 0.0.0.0 -p 6443 -m chacha20-ietf-poly1305 -k test123" -x -e "kcpserver" -k "-t 127.0.0.1:6443 -l :6500 -mode fast2"
 `
 
--客户端安装见shadowsocks
+-客户端安装下载exe 配置参ss.jpg
 
