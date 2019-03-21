@@ -14,3 +14,4 @@
     "mode":"tcp_and_udp"
 }
 ```
+- 日志查看 ` docker logs id`
