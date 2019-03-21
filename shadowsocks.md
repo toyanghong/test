@@ -15,3 +15,8 @@
 }
 ```
 - 日志查看 ` docker logs id`
+
+### 版本
+
+` docker run --privileged -dt --name ss -p 6443:6443 -p 6443:6443/udp -p 6500:6500/udp -e SS_CONFIG="-s 0.0.0.0 -p 6443 -m chacha20 -k test123 -u " -e KCP_MODULE="kcpserver" -e KCP_CONFIG="-t 127.0.0.1:6443 -l :6500 -mode fast2" -e KCP_FLAG="true" mritd/shadowsocks:3.2.4-20190321 -r /dev/urandom
+`
