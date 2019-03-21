@@ -8,7 +8,7 @@
     "server_port":9000,
     "password":"password0",
     "timeout":300,
-    "method":"aes-256-gcm",
+    "method":"chacha20",
     "fast_open":false,
     "nameserver":"8.8.8.8",
     "mode":"tcp_and_udp"
