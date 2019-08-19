@@ -31,8 +31,8 @@ git push -u origin --tags
 
 ```
 
-- http上传首次需要输入密码 用`git config --system --unset credential.helper
-`记住密码。注意与ssh区别 不需要gitlab上设置密钥
+- http上传首次需要输入密码 用`git config --system --unset credential.helper`重置
+密码。注意与SSH区别不需要gitlab上设置密钥
 
 - 查看远程提交git url  `git remote -v`
 
