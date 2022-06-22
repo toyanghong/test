@@ -1,8 +1,8 @@
-version: 2.1.10
+version: 2.1.12
 files:
-  - url: appelectron Setup 2.1.10.exe
+  - url: appelectron Setup 2.1.12.exe
     sha512: qItHT/oPoLK/MUSfH95KSRTf2D1Y5h1Bz65OPHHNcJ24iOy+vloTZCvvUc2SU2T0OxOuIR0F11xE7oTiSKirXQ==
     size: 77189240
-path: appelectron Setup 2.1.10.exe
+path: appelectron Setup 2.1.12.exe
 sha512: qItHT/oPoLK/MUSfH95KSRTf2D1Y5h1Bz65OPHHNcJ24iOy+vloTZCvvUc2SU2T0OxOuIR0F11xE7oTiSKirXQ==
 releaseDate: '2022-06-22T17:37:03.590Z'
