@@ -201,7 +201,12 @@ getData() {
             echo -e "${GREEN} 检测到自有证书，将使用其部署${PLAIN}"
             CERT_FILE="/etc/trojan-go/${DOMAIN}.pem"
             KEY_FILE="/etc/trojan-go/${DOMAIN}.key"
-
+        else
+            resolve=`curl -sL https://hijk.art/hostip.php?d=${DOMAIN}`
+            res=`echo -n ${resolve} | grep ${IP}`
+         
+            fi
+        fi
     else
         DOMAIN=`grep sni $CONFIG_FILE | cut -d\" -f4`
         CERT_FILE=`grep cert $CONFIG_FILE | cut -d\" -f4`
