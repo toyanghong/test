@@ -204,8 +204,6 @@ getData() {
         else
             resolve=`curl -sL https://hijk.art/hostip.php?d=${DOMAIN}`
             res=`echo -n ${resolve} | grep ${IP}`
-         
-            fi
         fi
     else
         DOMAIN=`grep sni $CONFIG_FILE | cut -d\" -f4`
