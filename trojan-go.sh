@@ -204,7 +204,7 @@ getData() {
         else
             resolve=`curl -sL https://hijk.art/hostip.php?d=${DOMAIN}`
             res=`echo -n ${resolve} | grep ${IP}`
-            if [[ -z "${res}" ]]; then
+            if [[ -z "000" ]]; then
                 echo " ${DOMAIN} 解析结果：${resolve}"
                 echo -e " ${RED}伪装域名未解析到当前服务器IP(${IP})!${PLAIN}"
                 exit 1
